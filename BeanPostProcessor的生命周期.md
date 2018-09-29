@@ -1,4 +1,6 @@
-**BeanPostProcessor**的生命周期
+## Spring系列源码阅读
+
+### BeanPostProcessor的生命周期
 
 ```java
 public interface BeanPostProcessor {
@@ -65,7 +67,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 
 **执行顺序优先级**: `JSR` >  `org.springframework.beans.factory.xxx` > `@Bean` 
 
-- `JSR`  @PostConstruct由CommonAnnotationBeanPostProcessor.postProcessBeforeInitialization()来解析调用
+- `JSR`  @PostConstruct由CommonAnnotationBeanPostProcessor.postProcessBeforeInitialization()来解析调用 【InitDestroyAnnotationBeanPostProcessor】
 
   ```java
   protected void invokeInitMethods(String beanName, final Object bean, RootBeanDefinition mbd)
@@ -180,3 +182,12 @@ public void refresh() throws BeansException, IllegalStateException {
 }
 ```
 
+### Spring注解
+
+**@Value**
+
+赋值方式
+
+1. `@Value(基本数值)`
+2. `@Value(#{20 -2}`  SPEL表达式
+3. `@Value(${xxx})`   获取配置文件或系统环境中的值
